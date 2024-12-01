@@ -9,3 +9,6 @@ export const REPORT_VISIT_ENDPOINT =
 
 export const POST_SNOWMAN_ENDPOINT =
   import.meta.env.VITE_ROOT_ENDPOINT + '/api/post';
+
+export const SUBSCRIBE_CITY_ENDPOINT =
+  import.meta.env.VITE_ROOT_ENDPOINT + '/api/subscribe';

@@ -1,13 +1,12 @@
 import {Button, Paper, TextField} from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {styled} from '@mui/material/styles';
-
+import axios from 'axios';
 import React, {useRef, useState} from 'react';
 import {POST_SNOWMAN_ENDPOINT} from '../endpoints';
 
 interface Props {
   city: string;
-  creds: string;
   refresh: () => void;
   close: () => void;
 }
@@ -21,10 +20,10 @@ function PostOverlay(props: Props) {
     form.append('image', image);
     form.append('location', locationString);
     form.append('city', props.city);
-    fetch(POST_SNOWMAN_ENDPOINT, {
-      method: 'POST',
-      headers: {Authorization: `Bearer ${props.creds}`},
-      body: form,
+    axios(POST_SNOWMAN_ENDPOINT, {
+      withCredentials: true,
+      method: 'post',
+      data: form,
     }).then(() => {
       setImage(undefined);
       if (location.current) {

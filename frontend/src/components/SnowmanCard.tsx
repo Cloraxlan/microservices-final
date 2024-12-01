@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Box} from '@mui/material';
 import {REPORT_MISSING_ENDPOINT, REPORT_VISIT_ENDPOINT} from '../endpoints';
+import axios from 'axios';
 
 export interface ISnowman {
   id: number;
@@ -20,26 +21,27 @@ export interface ISnowman {
 
 interface Props {
   snowman: ISnowman;
-  creds: string;
   refresh: () => void;
 }
 
 function SnowmanCard(props: Props) {
   const reportVisit = () => {
-    fetch(REPORT_VISIT_ENDPOINT, {
-      method: 'POST',
-      body: JSON.stringify({id: props.snowman.id}),
-      headers: {Authorization: `Bearer ${props.creds}`},
+    axios(REPORT_VISIT_ENDPOINT, {
+      withCredentials: true,
+      method: 'post',
+      data: {id: props.snowman.id},
+    }).then(() => {
+      props.refresh();
     });
-    props.refresh();
   };
   const reportMissing = () => {
-    fetch(REPORT_MISSING_ENDPOINT, {
-      method: 'POST',
-      headers: {Authorization: `Bearer ${props.creds}`},
-      body: JSON.stringify({id: props.snowman.id}),
+    axios(REPORT_MISSING_ENDPOINT, {
+      withCredentials: true,
+      method: 'post',
+      data: {id: props.snowman.id},
+    }).then(() => {
+      props.refresh();
     });
-    props.refresh();
   };
 
   return (
