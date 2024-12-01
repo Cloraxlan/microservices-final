@@ -7,6 +7,7 @@ import edu.msoe.microservicefinal.snowmanPostMicroservice.database.SnowmanReposi
 import edu.msoe.microservicefinal.snowmanPostMicroservice.database.UserRepository;
 import edu.msoe.microservicefinal.snowmanPostMicroservice.entity.Snowman;
 import edu.msoe.microservicefinal.snowmanPostMicroservice.entity.User;
+import edu.msoe.microservicefinal.snowmanPostMicroservice.kafka.MessageProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -27,6 +28,8 @@ public class SnowmanController {
     private AmazonS3 s3Client;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MessageProducer messageProducer;
     @GetMapping("/city/{city}")
     List<Snowman> getSnowmen(@PathVariable("city") String city){
         return snowmanRepository.findByCity(city);
@@ -100,5 +103,8 @@ public class SnowmanController {
         snowman.setImageURI(s3Client.getUrl("snowman-microservice", filepath).toString());
         snowman.setUsername(user.getAttribute("name"));
         snowmanRepository.save(snowman);
+        for (User subbedUser:userRepository.getAllByCity(city)){
+            messageProducer.sendMessage(city, subbedUser.getEmail() +"\n"+location);
+        }
     }
 }
