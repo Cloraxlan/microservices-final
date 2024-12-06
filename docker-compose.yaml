@@ -28,13 +28,19 @@ services:
     ports : 
       - "8080:8080"
     environment:
-      SPRING_APPLICATION_JSON: ''
+      SPRING_APPLICATION_JSON: '{"spring.security.oauth2.client.registration.google.client-id": "<OAUTH_CLIENT_ID>",
+      "spring.security.oauth2.client.registration.google.client-secret" : "<OAUTH_SECRET>",
+      "app.privateKey" : "<S3_PRIVATE_KEY>",
+      "app.accessKey" : "<S3_ACCESS_KEY>",
+      "kafkaHost" : "broker:9092"}'
   notify_microservice:
     image : cloraxland/snowmannotifymicroservice
     ports : 
       - "8081:8081"
     environment:
-      SPRING_APPLICATION_JSON: ''
+      SPRING_APPLICATION_JSON: '{"email.privateKey" : "<MAILJET_PRIVATE_KEY>",
+      "email.apiKey" : "<MAILJET_API_KEY>",
+      "kafkaHost" : "broker:9092"}'
   nginx:
     image : nginx:1-alpine
     restart: always
