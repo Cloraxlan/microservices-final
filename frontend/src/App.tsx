@@ -8,15 +8,6 @@ import axios from 'axios';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 
 function App() {
-  const test: ISnowman = {
-    city: 'Milwaukee',
-    imageURI: 'https://i.imgur.com/7bi99EE.jpeg',
-    location: 'Dierks Hall',
-    missingCount: 0,
-    seenCount: 0,
-    username: 'rozpadekk',
-    id: 1,
-  };
   const fetchCity = async () => {
     console.log('Fetching ' + city);
     let res = await axios.get(FETCH_CITY_ENDPOINT + '/' + city, {

@@ -1,8 +1,7 @@
 import {Button, Paper, TextField} from '@mui/material';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import {styled} from '@mui/material/styles';
 import axios from 'axios';
-import React, {useRef, useState} from 'react';
+import {useRef, useState} from 'react';
 import {POST_SNOWMAN_ENDPOINT} from '../endpoints';
 
 interface Props {

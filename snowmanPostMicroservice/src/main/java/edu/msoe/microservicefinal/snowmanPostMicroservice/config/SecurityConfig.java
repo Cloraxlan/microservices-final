@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .disable().authorizeHttpRequests(authorizeReq->{
             authorizeReq.requestMatchers("/api/**").authenticated();
         }).oauth2Login(oauth->{
-            oauth.defaultSuccessUrl("http://localhost:5173/app");
+            oauth.defaultSuccessUrl("/app");
                 });
         return http.build();
     }
