@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .csrf()
                 .disable().authorizeHttpRequests(authorizeReq->{
             authorizeReq.requestMatchers("/api/**").authenticated();
+            authorizeReq.requestMatchers("/actuator/**").authenticated();
         }).oauth2Login(oauth->{
             oauth.defaultSuccessUrl("/app");
                 });
