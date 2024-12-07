@@ -36,7 +36,7 @@ This application allows users to post snowmens they find in their local area. A 
     * Increments the amount of times someone reports a snowman missing
     * Request Body JSON - {"id" : id}
     * id is the snowman's ID
--   POST /visit
+-   POST /api/visit
     * Increments the amount of times someone reports a visiting a snowman
     * Request Body JSON - {"id" : id}
     * id is the snowman's ID
@@ -49,6 +49,7 @@ This application allows users to post snowmens they find in their local area. A 
 -   GET /actuator/metrics/http.server.requests?uri={uri}
     * Provides stats such as amount of times endpoint is visited, total time proccessing endpoint, and longest time it took to process endpoint
     * Metrics tracked through Spring Actuator
+    * uri is in the form `/api/visit` for example if you wanted to see the metrics for the visiting endpoint
 
 
 ### Notify Microservice
