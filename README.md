@@ -21,13 +21,14 @@ This application allows users to post snowmens they find in their local area. A 
 -   GET /oauth2/authorization/google 
     *   Google Oauth Login Endpoint
 -   GET /api/city/{city} 
-    *   Returns snowmen posted in the {city}
+    *   Response body is JSON array of snowmen posted in the {city}
     *   Options for {city} are
         1. Milwaukee
         2. Chicago
         3. Dubai
 -   POST /api/subscribe/{city}
-    * Signs user up for email notications whenever a new snowman post is posted
+    * Signs user up for email notications whenever a new snowman post is posted. If already signed up it unsubscribes.
+    * Response body is boolean that is true if subscribed and false if unsubscribed
     *   Options for {city} are
         1. Milwaukee
         2. Chicago
@@ -36,10 +37,12 @@ This application allows users to post snowmens they find in their local area. A 
     * Increments the amount of times someone reports a snowman missing
     * Request Body JSON - {"id" : id}
     * id is the snowman's ID
+    * Response body is JSON serialized Snowman object
 -   POST /api/visit
     * Increments the amount of times someone reports a visiting a snowman
     * Request Body JSON - {"id" : id}
     * id is the snowman's ID
+    * Response body is JSON serialized Snowman object
 -   POST /api/post
     * Posts a new snowman
     * Request body is FormData
@@ -50,16 +53,17 @@ This application allows users to post snowmens they find in their local area. A 
     * Provides stats such as amount of times endpoint is visited, total time proccessing endpoint, and longest time it took to process endpoint
     * Metrics tracked through Spring Actuator
     * uri is in the form `/api/visit` for example if you wanted to see the metrics for the visiting endpoint
+    * JSON Response body with statistics
 
 
 ### Notify Microservice
 #### Kafka Topics
 -   Milwaukee
-    * Recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
+    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
     * Sends a new snowman in Milwakee email 
 -   Chicago
-    * Recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
+    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
     * Sends a new snowman in Chicago email
 -   Dubai
-    * Recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
+    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
     * Sends a new snowman in Dubai email
