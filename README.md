@@ -21,13 +21,14 @@ This application allows users to post snowmens they find in their local area. A 
 -   GET /oauth2/authorization/google 
     *   Google Oauth Login Endpoint
 -   GET /api/city/{city} 
+    *   Lists the snowman posted in the city
     *   Response body is JSON array of snowmen posted in the {city}
     *   Options for {city} are
         1. Milwaukee
         2. Chicago
         3. Dubai
 -   POST /api/subscribe/{city}
-    * Signs user up for email notications whenever a new snowman post is posted. If already signed up it unsubscribes.
+    * Signs user up for email notications whenever a new snowman post is posted for the city. If already signed up it unsubscribes.
     *   Options for {city} are
         1. Milwaukee
         2. Chicago
@@ -48,7 +49,7 @@ This application allows users to post snowmens they find in their local area. A 
         1. image : blob of the snowman picture
         2. city : City snowman is posted in, see options above
         3. location : Specific location string provided in form, for example "Dierks Hall"
--   GET /actuator/metrics/http.server.requests?uri={uri}
+-   GET /actuator/metrics/http.server.requests?tag=uri:{uri}
     * Provides stats such as amount of times endpoint is visited, total time proccessing endpoint, and longest time it took to process endpoint
     * Metrics tracked through Spring Actuator
     * uri is in the form `/api/visit` for example if you wanted to see the metrics for the visiting endpoint
