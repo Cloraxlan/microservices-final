@@ -28,7 +28,6 @@ This application allows users to post snowmens they find in their local area. A 
         3. Dubai
 -   POST /api/subscribe/{city}
     * Signs user up for email notications whenever a new snowman post is posted. If already signed up it unsubscribes.
-    * Response body is boolean that is true if subscribed and false if unsubscribed
     *   Options for {city} are
         1. Milwaukee
         2. Chicago
