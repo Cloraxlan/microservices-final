@@ -59,11 +59,11 @@ This application allows users to post snowmens they find in their local area. A 
 ### Notify Microservice
 #### Kafka Topics
 -   Milwaukee
-    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
-    * Sends a new snowman in Milwakee email 
+    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<CONTENT>``
+    * Sends a new snowman email using Milwaukee template
 -   Chicago
-    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
-    * Sends a new snowman in Chicago email
+    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<CONTENT>``
+    * Sends a new snowman email using Chicago template 
 -   Dubai
-    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<EMAIL BODY>``
-    * Sends a new snowman in Dubai email
+    * Consumer recieves a message in the form ``<EMAIL ADDRESS>\n<CONTENT>``
+    * Sends a new snowman email using Dubai template 
