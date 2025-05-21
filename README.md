@@ -1,8 +1,4 @@
-# Microservices Final Project
-
-## Deployed version access
--   http://rozpadek.online
--   Deployed on Digital Ocean Droplet
+# Snowman Tracker
 
 ## Installation
 1. Clone the repository
